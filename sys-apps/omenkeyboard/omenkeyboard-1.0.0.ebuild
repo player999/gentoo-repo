@@ -12,3 +12,15 @@ IUSE=""
 DEPEND=""
 RDEPEND="${DEPEND}"
 BDEPEND=""
+
+src_unpack() {
+	default
+	mv "encoder_keyboard-1.0.0" "omenkeyboard-1.0.0"
+}
+
+src_install() {
+	mkdir -p ${D}/usr/bin/
+	mkdir -p ${D}/lib/udev/rules.d/
+	/usr/bin/install ${WORKDIR}/omenkeyboard-1.0.0/encoder ${D}/usr/bin/encoder
+	/usr/bin/install ${WORKDIR}/omenkeyboard-1.0.0/97-omen_encoder.rules ${D}/lib/udev/rules.d/97-omen_encoder.rules
+}
